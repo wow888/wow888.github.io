@@ -1,5 +1,6 @@
 // var host = 'http://127.0.0.1:8000';
-var host = 'https://118.190.217.4';
+// var host = 'https://118.190.217.4';
+var host = 'https://www.moter.top';
 
 /**
  * 获取指定的URL参数值
