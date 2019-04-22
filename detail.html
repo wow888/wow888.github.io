@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta name="applicable-device" content="pc">
-    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.meituri.com/a/22511/">
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="http://m3w.cn/mtzlg/">
     <title>美女图片大全|美女写真集 - 超高清美女图片库</title>
     <meta name="keywords" content="美女图片,美女写真,美女,美女图片库,美图馆,美图,写真集">
     <meta name="description" content="美图展览馆,一家专门收录各类超高清美图的网站，包括美女图片、美女写真集、唯美图片、小清新图片等,做一个专业的美女图片库">
@@ -59,6 +59,7 @@
     </div>
     <div class="bk20"></div>
     <div class="content">
+        <img v-if="images.length === 0" src="./static/imgs/loading.gif"/>
         <img v-for="item in images" :src="item.linkimg" alt="{{album.name}}" class="tupian_img">
     </div>
     <div class="bk20"></div>
@@ -79,9 +80,11 @@
             <li v-for="item in relatedAlbums">
                 <a :href="`detail.html?album=`+item.id" target="_blank"><img :src="item.cover"></a>
                 <span class="shuliang">{{item.img_num}}P</span>
-                <p>机构： <a :href="`albums.html?publisher=`+item.publisher.id" target="_blank">{{item.publisher.name}}</a></p>
+                <p>机构： <a :href="`albums.html?publisher=`+item.publisher.id" target="_blank">{{item.publisher.name}}</a>
+                </p>
                 <p>模特： <a :href="`albums.html?moter=`+item.moter.id" target="_blank">{{item.moter.name}}</a></p>
-                <p>标签： <a v-for="tag in item.tags" :href="`albums.html?tag=`+tag.id" target="_blank">{{tag.name}}</a></p>
+                <p>标签： <a v-for="tag in item.tags" :href="`albums.html?tag=`+tag.id" target="_blank">{{tag.name}}</a>
+                </p>
                 <p class="biaoti">{{item.name}}</p>
             </li>
         </ul>
@@ -93,20 +96,27 @@
             <li v-for="item in recmmedAlbums">
                 <a :href="`detail.html?album=`+item.id" target="_blank"><img :src="item.cover"></a>
                 <span class="shuliang">{{item.img_num}}P</span>
-                <p>机构： <a :href="`albums.html?publisher=`+item.publisher.id" target="_blank">{{item.publisher.name}}</a></p>
+                <p>机构： <a :href="`albums.html?publisher=`+item.publisher.id" target="_blank">{{item.publisher.name}}</a>
+                </p>
                 <p>模特： <a :href="`albums.html?moter=`+item.moter.id" target="_blank">{{item.moter.name}}</a></p>
-                <p>标签： <a v-for="tag in item.tags" :href="`albums.html?tag=`+tag.id" target="_blank">{{tag.name}}</a></p>
+                <p>标签： <a v-for="tag in item.tags" :href="`albums.html?tag=`+tag.id" target="_blank">{{tag.name}}</a>
+                </p>
                 <p class="biaoti">{{item.name}}</p>
             </li>
         </ul>
     </div>
 </div>
 
+<div class="bk10"></div>
+<div class="width">
+    <div class="title">友情链接</div>
+    <div class="link">
+        <a href="http://m3w.cn/mtzlg" target="_blank">美图馆手机APP/HTML5</a>
+        <br/>广告、合作、反馈、联系 xxyy@163.com
+    </div>
+</div>
 <div class="footer">
-    <a href="https://www.meituri.com/">美图馆</a> - 海量超高清的美图库! <a href="https://www.meituri.com/html/bq/">版权声明</a>
-    <p>
-        <script src="https://s95.cnzz.com/z_stat.php?id=1261136975&web_id=1261136975" language="JavaScript"></script>
-    </p>
+    <a href="http://m3w.cn/mtzlg" target="_blank">美图馆</a> - 海量超高清的美图库! <a href="http://m3w.cn/mtzlg" target="_blank">版权声明</a>
 </div>
 
 <script>
@@ -192,6 +202,8 @@
             },
             handlePaginate(page) {
                 this.currPage = page;
+                this.images = [];
+                window.location = '#app';
                 this.obtainAlbumImages({album: this.albumId, page: this.currPage});
             }
         },

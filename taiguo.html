@@ -6,10 +6,10 @@
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta name="applicable-device" content="pc">
-    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.meituri.com/">
-    <title>泰国美女图片大全|美女写真集 - 超高清美女图片库_美图日</title>
-    <meta name="keywords" content="泰国美女图片,美女写真,美女,美女图片库,美图日,美图,写真集">
-    <meta name="description" content="美图日,一家专门收录各类超高清泰国美图的网站，包括泰国美女图片、美女写真集、唯美图片、小清新图片等,做一个专业的美女图片库">
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="http://m3w.cn/mtzlg/">
+    <title>泰国美女图片大全|美女写真集 - 超高清美女图片库_美图馆</title>
+    <meta name="keywords" content="泰国美女图片,美女写真,美女,美女图片库,美图馆,美图,写真集">
+    <meta name="description" content="美图馆,一家专门收录各类超高清泰国美图的网站，包括泰国美女图片、美女写真集、唯美图片、小清新图片等,做一个专业的美女图片库">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
@@ -22,7 +22,7 @@
 <body>
 
 <div class="top">
-    <div class="logo"><a href="https://www.meituri.com/"><img src="https://img.meituri.com/css/logo.png" alt="美图日"/></a>
+    <div class="logo"><a href="https://www.meituri.com/"><img src="https://img.meituri.com/css/logo.png" alt="美图馆"/></a>
     </div>
     <div class="nav">
         <ul class="menu">
@@ -109,12 +109,16 @@
     </center>
 </div>
 
-<div class="bk20"></div>
+<div class="bk10"></div>
+<div class="width">
+    <div class="title">友情链接</div>
+    <div class="link">
+        <a href="http://m3w.cn/mtzlg" target="_blank">美图馆手机APP/HTML5</a>
+        <br/>广告、合作、反馈、联系 xxyy@163.com
+    </div>
+</div>
 <div class="footer">
-    <a href="https://www.meituri.com/">美图日</a> - 海量超高清的美图库! <a href="https://www.meituri.com/html/bq/">版权声明</a>
-    <p>
-        <script src="https://s95.cnzz.com/z_stat.php?id=1261136975&web_id=1261136975" language="JavaScript"></script>
-    </p>
+    <a href="http://m3w.cn/mtzlg" target="_blank">美图馆</a> - 海量超高清的美图库! <a href="http://m3w.cn/mtzlg" target="_blank">版权声明</a>
 </div>
 
 <script>
@@ -177,6 +181,7 @@
             },
             handlePaginate(page) {
                 this.currentPage = page;
+                window.location = '#app';
                 this.obtainAlbums({
                     category: this.category,
                     area: this.area,
