@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="applicable-device" content="pc">
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.meituri.com/a/22511/">
+    <title>美女图片大全|美女写真集 - 超高清美女图片库</title>
+    <meta name="keywords" content="美女图片,美女写真,美女,美女图片库,美图馆,美图,写真集">
+    <meta name="description" content="美图展览馆,一家专门收录各类超高清美图的网站，包括美女图片、美女写真集、唯美图片、小清新图片等,做一个专业的美女图片库">
+    <link href="https://img.meituri.com/css/pc.css" rel="stylesheet" type="text/css"/>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <script src="//unpkg.com/iview/dist/iview.min.js"></script>
+    <link href="./static/css/pc.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="./static/js/jquery.js"></script>
+    <script type="text/javascript" src="./static/js/js.js"></script>
+    <link rel="icon" href="https://img.meituri.com/ico.ico" type="image/x-icon"/>
+</head>
+<body>
+
+<div class="top">
+    <div class="logo"><a href="https://www.meituri.com/"><img src="https://img.meituri.com/css/logo.png" alt="美图日"/></a>
+    </div>
+    <div class="nav">
+        <ul class="menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="zhongguo.html">中国大陆</a></li>
+            <li><a href="taiwan.html">中国台湾</a></li>
+            <li><a href="riben.html">日本</a></li>
+            <li><a href="hanguo.html">韩国</a></li>
+            <li><a href="oumei.html">欧美</a></li>
+            <li><a href="taiguo.html">泰国</a></li>
+            <li><a href="moters.html">模特库</a></li>
+            <li><a href="publishers.html">写真机构</a></li>
+        </ul>
+    </div>
+    <div class="top_r"></div>
+</div>
+
+<div id="app">
+    <div class="tuji">
+        <div class="weizhi"><span>当前位置： <a href="https://www.meituri.com/">美图馆</a> > <a
+                href="https://www.meituri.com/zhongguo/">中国大陆美女</a> > </a></span>
+            <h1>{{album.name}}</h1></div>
+        <div class="c"></div>
+        <hr/>
+        <p>拍摄机构：
+            <a :href="`albums.html?publisher=`+album.publisher.id" target="_blank">{{album.publisher.name}}</a>
+        </p>
+        <p>图片数量： {{album.img_num}}P</p>
+        <p>发行日期： {{album.pub_date}}</p>
+        <p>出镜模特：
+            <a :href="`albums.html?moter=`+album.moter.id" target="_blank">{{album.moter.name}}</a>
+        </p>
+    </div>
+    <div class="bk20"></div>
+    <div class="content">
+        <img v-for="item in images" :src="item.linkimg" alt="{{album.name}}" class="tupian_img">
+    </div>
+    <div class="bk20"></div>
+    <div style="text-align: center;">
+        <div id="pages">
+            <Page :total="totalImgCount" :page-size="perPageCount" show-elevator @on-change="handlePaginate"/>
+        </div>
+    </div>
+    <div style="margin-bottom: 16px;margin-left: 80px">
+        <div class=fenxiang_l>标签：
+            <a v-for="tag in album.tags" :href="`albums.html?tag=`+tag.id" target="_blank">{{tag.name}}</a>
+        </div>
+    </div>
+    <div class="bk10"></div>
+    <div class="hezi">
+        <div class="title">相关图辑</div>
+        <ul>
+            <li v-for="item in relatedAlbums">
+                <a :href="`detail.html?album=`+item.id" target="_blank"><img :src="item.cover"></a>
+                <span class="shuliang">{{item.img_num}}P</span>
+                <p>机构： <a :href="`albums.html?publisher=`+item.publisher.id" target="_blank">{{item.publisher.name}}</a></p>
+                <p>模特： <a :href="`albums.html?moter=`+item.moter.id" target="_blank">{{item.moter.name}}</a></p>
+                <p>标签： <a v-for="tag in item.tags" :href="`albums.html?tag=`+tag.id" target="_blank">{{tag.name}}</a></p>
+                <p class="biaoti">{{item.name}}</p>
+            </li>
+        </ul>
+    </div>
+    <div class="bk10"></div>
+    <div class="hezi">
+        <div class="title">推荐图辑</div>
+        <ul>
+            <li v-for="item in recmmedAlbums">
+                <a :href="`detail.html?album=`+item.id" target="_blank"><img :src="item.cover"></a>
+                <span class="shuliang">{{item.img_num}}P</span>
+                <p>机构： <a :href="`albums.html?publisher=`+item.publisher.id" target="_blank">{{item.publisher.name}}</a></p>
+                <p>模特： <a :href="`albums.html?moter=`+item.moter.id" target="_blank">{{item.moter.name}}</a></p>
+                <p>标签： <a v-for="tag in item.tags" :href="`albums.html?tag=`+tag.id" target="_blank">{{tag.name}}</a></p>
+                <p class="biaoti">{{item.name}}</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="footer">
+    <a href="https://www.meituri.com/">美图馆</a> - 海量超高清的美图库! <a href="https://www.meituri.com/html/bq/">版权声明</a>
+    <p>
+        <script src="https://s95.cnzz.com/z_stat.php?id=1261136975&web_id=1261136975" language="JavaScript"></script>
+    </p>
+</div>
+
+<script>
+    var myvue = new Vue({
+        el: '#app',
+        data() {
+            return {
+                albumId: 1,
+                album: {},
+                images: [],
+                totalImgCount: 0,
+                perPageCount: 6,
+                totalPages: [],
+                currPage: 1,
+                relatedAlbums: [],
+                recmmedAlbums: [],
+                category: 1,
+                ordering: '-click_num',
+                publisher: '',
+                moter: '',
+                currentPage: 1
+            }
+        },
+        methods: {
+            obtainRelatedAlbums(queryParams) {
+                getAlbums({params: queryParams}).then(
+                    (response) => {
+                        this.relatedAlbums = response.data.results;
+                        if (this.relatedAlbums.length === 1) {
+                            this.relatedAlbums = [];
+                        }
+                        if (this.relatedAlbums.length > 4) {
+                            this.relatedAlbums = response.data.results.slice(0, 4);
+                        }
+                    }
+                )
+            },
+            obtainRecommedAlbums(queryParams) {
+                getAlbums({params: queryParams}).then(
+                    (response) => {
+                        this.recmmedAlbums = response.data.results;
+                        if (this.recmmedAlbums.length > 4) {
+                            this.recmmedAlbums = response.data.results.slice(0, 4);
+                        }
+                    }
+                )
+            },
+            obtainSpecifiedAlbum(albumId) {
+                getAlbums({id: albumId}).then(
+                    (response) => {
+                        this.album = response.data;
+                        document.title = this.album.moter.name + '-' + this.album.name;
+                        this.obtainRelatedAlbums({
+                            category: this.category,
+                            area: this.album.area.id,
+                            ordering: this.ordering,
+                            publisher: '',
+                            moter: this.album.moter.id,
+                            page: this.currentPage
+                        });
+                        this.obtainRecommedAlbums({
+                            category: this.category,
+                            area: this.album.area.id,
+                            ordering: this.ordering,
+                            publisher: this.album.publisher.id,
+                            moter: '',
+                            page: this.currentPage
+                        })
+                    }
+                )
+            },
+            obtainAlbumImages(queryParams) {
+                getImages({params: queryParams}).then(
+                    (response) => {
+                        this.images = response.data.results;
+                        this.totalImgCount = response.data.count;
+                        let pageCount = Math.ceil(this.totalImgCount / this.perPageCount) + 1;
+                        for (let k = 1; k < pageCount; k++) {
+                            this.totalPages.push(k)
+                        }
+                    }
+                )
+            },
+            handlePaginate(page) {
+                this.currPage = page;
+                this.obtainAlbumImages({album: this.albumId, page: this.currPage});
+            }
+        },
+        created() {
+            let queryParam = getParam('album');
+            this.albumId = parseInt(queryParam != null ? queryParam : '1');
+            this.obtainSpecifiedAlbum(this.albumId);
+            this.obtainAlbumImages({album: this.albumId});
+        }
+    });
+</script>
+
+</body>
+</html>
